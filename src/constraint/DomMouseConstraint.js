@@ -78,15 +78,20 @@ module.exports = function(Matter){
                     mousePositionInWorld = body.Dom.render.mapping.viewToWorld(mouse.position);
                     var bodyPositionInView = body.Dom.render.mapping.worldToView(body.position);
                     if(Bounds.contains(body.bounds, mousePositionInWorld)){
-                        constraint.pointA =  mousePositionInWorld;
-                        constraint.bodyB = mouseConstraint.body = body;
-                        //constraint.pointB = {x: mousePositionInWorld.x - body.position.x, y: mousePositionInWorld.y - body.position.y};
-                        constraint.pointB = {x: 0, y: 0};
-                        constraint.angleB = body.angle;
-                        
-                        Events.trigger(mouseConstraint, 'startdrag', { mouse: mouse, body: body });
+                        for (var j = body.parts.length > 1 ? 1 : 0; j < body.parts.length; j++) {
+                            var part = body.parts[j];
+                            if (Vertices.contains(part.vertices, mousePositionInWorld)) {
+                                constraint.pointA = mousePositionInWorld;
+                                constraint.bodyB = mouseConstraint.body = body;
+                                constraint.pointB = { x: mousePositionInWorld.x - body.position.x, y: mousePositionInWorld.y - body.position.y };
+                                constraint.angleB = body.angle;
 
-                        break;
+                                Sleeping.set(body, false);
+                                Events.trigger(mouseConstraint, 'startdrag', { mouse: mouse, body: body });
+
+                                break;
+                            }
+                        }
                     }   
                 }
             }else{
