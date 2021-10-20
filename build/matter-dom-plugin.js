@@ -694,7 +694,7 @@ var Engine = __webpack_require__(2);
 var MatterDomPlugin = {
     name: 'matter-dom-plugin',
     version: '0.1.2',
-    for: 'matter-js@^0.12.0',
+    for: 'matter-js@^0.17.1',
     install: function install(matter) {
         MatterDomPlugin.installRenderDom(matter);
         MatterDomPlugin.installDomBody(matter);
