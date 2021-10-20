@@ -703,23 +703,23 @@ var MatterDomPlugin = {
         MatterDomPlugin.installEngine(matter);
     },
     installRenderDom: function installRenderDom(matter) {
-        console.log("Installing RenderDom module.");
+        // console.log("Installing RenderDom module.");
         matter.RenderDom = RenderDom(matter);
     },
     installDomBodies: function installDomBodies(matter) {
-        console.log("Installing DomBodies module.");
+        // console.log("Installing DomBodies module.");
         matter.DomBodies = DomBodies(matter);
     },
     installDomMouseConstraint: function installDomMouseConstraint(matter) {
-        console.log("Installing DomMouseConstraint.");
+        // console.log("Installing DomMouseConstraint.");
         matter.DomMouseConstraint = DomMouseConstraint(matter);
     },
     installDomBody: function installDomBody(matter) {
-        console.log("Installing DomBody updates.");
+        // console.log("Installing DomBody updates.");
         matter.DomBody = DomBody(matter);
     },
     installEngine: function installEngine(matter) {
-        console.log("Patching Engine.");
+        // console.log("Patching Engine.");
         Engine(matter);
     }
 };
